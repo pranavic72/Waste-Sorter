@@ -13,6 +13,12 @@ This Streamlit web app classifies images of waste into categories such as cardbo
 
 ---
 
+## Live Demo
+
+Try the app live at: [https://waste-sorter.streamlit.app/](https://waste-sorter.streamlit.app/)
+
+---
+
 ## Deployment
 
 The app is deployed on [Streamlit Cloud](https://share.streamlit.io).
