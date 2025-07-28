@@ -34,7 +34,7 @@ class_names = ['.ipynb_checkpoints','cardboard', 'glass', 'metal', 'paper', 'pla
 
 
 # --- Streamlit UI ---
-st.title("♻ Waste Classification App")
+st.title("♻ Waste Sorter")
 st.write("Upload an image of waste and the model will classify it.")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png", "webp"])
