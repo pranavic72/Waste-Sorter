@@ -1,6 +1,0 @@
-gdown
-streamlit
-tensorflow
-pillow
-numpy
-matplotlib
