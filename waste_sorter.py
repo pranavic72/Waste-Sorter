@@ -30,7 +30,7 @@ def load_waste_model():
 model = load_waste_model()
 
 # --- Define Class Labels (Adjust to Your Dataset Classes) ---
-class_names = ['.ipynb_checkpoints','cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']  # Example classes, modify as needed
+class_names = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']  # Example classes, modify as needed
 
 
 # --- Streamlit UI ---
