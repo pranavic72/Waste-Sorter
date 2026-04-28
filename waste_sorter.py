@@ -1,20 +1,13 @@
-import streamlit as st
-import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from PIL import Image
-
-
 import os
 import gdown
+import streamlit as st
 
-MODEL_PATH = "waste_sorter_optimized.keras"  # or 'waste_sorter.h5', whatever your filename is
+MODEL_PATH = "/tmp/waste_sorter_optimized.keras"  # /tmp is always writable
 
 if not os.path.exists(MODEL_PATH):
-    print("Downloading model from Google Drive...")
-    file_id = "1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0"  # Replace with your actual file ID
-    url = f"https://drive.google.com/uc?id={file_id}"
-    gdown.download(url, MODEL_PATH, quiet=False)
+    with st.spinner("Downloading model... (first load only)"):
+        file_id = "1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0"
+        gdown.download(f"https://drive.google.com/uc?id={file_id}", MODEL_PATH, quiet=False)
 else:
     print("Model file already exists locally.")
 
