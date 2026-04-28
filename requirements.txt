@@ -1,6 +1,5 @@
 streamlit
-tensorflow-cpu
-gdown
-pillow
 numpy
-matplotlib
+tensorflow-cpu==2.15.0
+Pillow
+gdown
