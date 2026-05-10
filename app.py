@@ -10,7 +10,7 @@ import gdown
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 
 def download_model():
-    file_id = "1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0"
+    file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
 
