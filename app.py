@@ -17,8 +17,7 @@ def download_model():
     gdown.download(
         id=file_id,
         output=MODEL_PATH,
-        quiet=False,
-        fuzzy=False
+        quiet=False
     )
 
 if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10000:
