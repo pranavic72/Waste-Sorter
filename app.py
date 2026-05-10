@@ -22,19 +22,23 @@ def download_model():
             url = f"https://drive.google.com/uc?export=download&confirm={value}&id={file_id}"
             response = session.get(url, stream=True)
             break
-    
+
+    # Handle new-style confirmation token in response content
+    token = None
+    for key, value in response.cookies.items():
+        if key.startswith("download_warning"):
+            token = value
+    if token:
+        url = f"https://drive.google.com/uc?export=download&confirm={token}&id={file_id}"
+        response = session.get(url, stream=True)
+
     with open(MODEL_PATH, "wb") as f:
         for chunk in response.iter_content(chunk_size=32768):
             if chunk:
                 f.write(chunk)
-if not os.path.exists(MODEL_PATH):
-    with st.spinner("Downloading model... this may take a minute."):
-        download_model()
-
-if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 1000:
-    st.error("❌ Model download failed. Make sure the Google Drive file is shared as 'Anyone with the link'.")
-    st.stop()
-
+    
+    size = os.path.getsize(MODEL_PATH)
+    st.write(f"Downloaded file size: {size} bytes")
 # --- Load Model ---
 @st.cache_resource
 def load_waste_model():
