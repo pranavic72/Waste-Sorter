@@ -8,12 +8,24 @@ import gdown
 
 # --- Model Download ---
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
-
+#https://drive.google.com/file/d/1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj/view?usp=sharing
 def download_model():
     file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
-    url = f"https://drive.google.com/uc?id={file_id}"
-    gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
-
+    session = requests.Session()
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    response = session.get(url, stream=True)
+    
+    # Handle virus scan warning for large files
+    for key, value in response.cookies.items():
+        if key.startswith("download_warning"):
+            url = f"https://drive.google.com/uc?export=download&confirm={value}&id={file_id}"
+            response = session.get(url, stream=True)
+            break
+    
+    with open(MODEL_PATH, "wb") as f:
+        for chunk in response.iter_content(chunk_size=32768):
+            if chunk:
+                f.write(chunk)
 if not os.path.exists(MODEL_PATH):
     with st.spinner("Downloading model... this may take a minute."):
         download_model()
