@@ -10,35 +10,23 @@ import gdown
 # --- Model Download ---
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 #https://drive.google.com/file/d/1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj/view?usp=sharing
+MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
+
 def download_model():
     file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
-    session = requests.Session()
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    response = session.get(url, stream=True)
-    
-    # Handle virus scan warning for large files
-    for key, value in response.cookies.items():
-        if key.startswith("download_warning"):
-            url = f"https://drive.google.com/uc?export=download&confirm={value}&id={file_id}"
-            response = session.get(url, stream=True)
-            break
+    gdown.download(
+        id=file_id,
+        output=MODEL_PATH,
+        quiet=False,
+        fuzzy=False
+    )
 
-    # Handle new-style confirmation token in response content
-    token = None
-    for key, value in response.cookies.items():
-        if key.startswith("download_warning"):
-            token = value
-    if token:
-        url = f"https://drive.google.com/uc?export=download&confirm={token}&id={file_id}"
-        response = session.get(url, stream=True)
-
-    with open(MODEL_PATH, "wb") as f:
-        for chunk in response.iter_content(chunk_size=32768):
-            if chunk:
-                f.write(chunk)
-    
-    size = os.path.getsize(MODEL_PATH)
-    st.write(f"Downloaded file size: {size} bytes")
+if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10000:
+    with st.spinner("Downloading model..."):
+        download_model()
+    if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10000:
+        st.error(f"Download failed. File size: {os.path.getsize(MODEL_PATH) if os.path.exists(MODEL_PATH) else 'file missing'}")
+        st.stop()
 # --- Load Model ---
 @st.cache_resource
 def load_waste_model():
