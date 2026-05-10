@@ -10,10 +10,11 @@ import gdown
 # --- Model Download ---
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 #https://drive.google.com/file/d/1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj/view?usp=sharing
+#https://drive.google.com/file/d/1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0/view?usp=sharing - 28 july 2025
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 
 def download_model():
-    file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
+    file_id = "1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0"
     gdown.download(
         id=file_id,
         output=MODEL_PATH,
