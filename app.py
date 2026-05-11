@@ -14,7 +14,7 @@ MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 
 def download_model():
-    file_id = "1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0"
+    file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
     gdown.download(
         id=file_id,
         output=MODEL_PATH,
