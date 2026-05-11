@@ -8,13 +8,14 @@ import os
 import gdown
 
 # --- Model Download ---
-MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
+# MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 #https://drive.google.com/file/d/1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj/view?usp=sharing
 #https://drive.google.com/file/d/1iEX8JOJrt6CRRMDEzuYfPEcM5JxSSAA0/view?usp=sharing - 28 july 2025
+#https://drive.google.com/file/d/1TsObvDHPeNup72zmagZvMJvshqcLhX0j/view?usp=sharing
 MODEL_PATH = "/tmp/waste_sorter_optimized.keras"
 
 def download_model():
-    file_id = "1VTYANVdHZ5wHqI4iU_1d56uTU563Iusj"
+    file_id = "1TsObvDHPeNup72zmagZvMJvshqcLhX0j"
     gdown.download(
         id=file_id,
         output=MODEL_PATH,
